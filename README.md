@@ -1,2 +1,5 @@
 # A3-Analise
-trabalha da materia de analise de algoritmo
+trabalho da materia de analise de algoritmo
+
+>## Problematica
+>Nesse projeto abordaremos um problema de transporte de carga aerea, para esse problema iremos utilizar o algoritmo do problema da mochila
