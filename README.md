@@ -2,4 +2,4 @@
 trabalho da materia de estrutura de dados e análise de algoritmos
 
 >## Problematica
->Nesse projeto abordaremos um problema de transporte de carga aerea, para esse problema iremos utilizar o algoritmo do problema da mochila
+>Nesse projeto abordaremos um problema de transporte de carga aerea, esse problema utilizará o problema da mochila e o algoritmo de programação dinâmica 
