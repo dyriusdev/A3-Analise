@@ -5,4 +5,4 @@ trabalho da materia de estrutura de dados e análise de algoritmos
 >Nesse projeto abordaremos um problema de transporte de carga aerea, esse problema utilizará o problema da mochila e o algoritmo de programação dinâmica 
 
 >## Tecnologias usadas
->![](https://skillicons.dev/icons?i=py, vscode&perline=1)
+>![](https://skillicons.dev/icons?i=py,vscode&perline=1)
