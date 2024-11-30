@@ -10,3 +10,4 @@
 
 >## Tecnologias usadas
 >- Python 3.12
+>- PyQt5
