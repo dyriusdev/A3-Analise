@@ -1,8 +1,12 @@
-# A3-Analise
-trabalho da materia de estrutura de dados e análise de algoritmos
+># Knapsack Problem
+> Trabalho da UC Estrutura de dados e Analise de algoritmo
 
 >## Problematica
->Nesse projeto abordaremos um problema de transporte de carga aerea, esse problema utilizará o problema da mochila e o algoritmo de programação dinâmica 
+> Esse projeto aborda a situação de transporte de carga aerea, onde existe um problema relacionado ao modo de transportar o maximo possivel de carga sem ter muito gasto
+
+>## Algoritmos usados
+>- Knapsack 0/1
+>- Dynamic Programing
 
 >## Tecnologias usadas
->![](https://skillicons.dev/icons?i=py,vscode&perline=1)
+>- Python 3.12
