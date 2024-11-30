@@ -19,15 +19,23 @@ class MainWindow(QWidget):
     def create_table(self) -> None:
         self.table = QTableWidget()
         self.table.setRowCount(4)
-        self.table.setColumnCount(2)
+        self.table.setColumnCount(5)
 
-        self.table.setItem(0, 0, QTableWidgetItem("Teste 1"))
-        self.table.setItem(0, 1, QTableWidgetItem("Teste 2"))
+        self.table.setItem(0, 0, QTableWidgetItem("Nome"))
+        self.table.setItem(0, 1, QTableWidgetItem("Valor"))
+        self.table.setItem(0, 2, QTableWidgetItem("Peso"))
+        self.table.setItem(0, 3, QTableWidgetItem("Prioridade"))
+        self.table.setItem(0, 4, QTableWidgetItem("Capacidade"))
 
         self.table.setItem(1, 0, QTableWidgetItem("1-1"))
-        self.table.setItem(1, 1, QTableWidgetItem("2-1"))
+        self.table.setItem(1, 1, QTableWidgetItem("10$"))
+        self.table.setItem(1, 2, QTableWidgetItem("32kg"))
+        self.table.setItem(1, 3, QTableWidgetItem("1"))
+        self.table.setItem(1, 4, QTableWidgetItem("50"))
+
         self.table.setItem(2, 0, QTableWidgetItem("1-2"))
         self.table.setItem(2, 1, QTableWidgetItem("2-2"))
+        
         self.table.setItem(3, 0, QTableWidgetItem("1-3"))
         self.table.setItem(3, 1, QTableWidgetItem("2-3"))
 
