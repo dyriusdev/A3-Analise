@@ -1,44 +1,59 @@
+from PyQt5.QtCore import *
+from PyQt5.QtCore import Qt
 from PyQt5.QtWidgets import *
+from PyQt5.QtWidgets import QWidget
 
 class MainWindow(QWidget):
 
-    def __init__(self) -> None:
+    def __init__(self, data : dict) -> None:
         super().__init__()
-        self.setWindowTitle("Problema da mochila")
+        self.setWindowTitle("Carga aerea")
         self.setGeometry(0, 0, 480, 480)
+        self.box = QGridLayout(self)
         
-        self.create_table()
+        self.table = QTableWidget(self)
+        self.set_table(data)
 
-        self.layout = QVBoxLayout()
-        self.layout.addWidget(self.table)
-        self.setLayout(self.layout)
-
+        self.order = QPushButton("Ordenar", self)
+        self.order.clicked.connect(self._on_order_clicked)
+        
+        self.box.addWidget(self.table)
+        self.box.addWidget(self.order)
         self.show()
         pass
-
-    def create_table(self) -> None:
-        self.table = QTableWidget()
-        self.table.setRowCount(4)
-        self.table.setColumnCount(5)
-
-        self.table.setItem(0, 0, QTableWidgetItem("Nome"))
-        self.table.setItem(0, 1, QTableWidgetItem("Valor"))
-        self.table.setItem(0, 2, QTableWidgetItem("Peso"))
-        self.table.setItem(0, 3, QTableWidgetItem("Prioridade"))
-        self.table.setItem(0, 4, QTableWidgetItem("Capacidade"))
-
-        self.table.setItem(1, 0, QTableWidgetItem("1-1"))
-        self.table.setItem(1, 1, QTableWidgetItem("10$"))
-        self.table.setItem(1, 2, QTableWidgetItem("32kg"))
-        self.table.setItem(1, 3, QTableWidgetItem("1"))
-        self.table.setItem(1, 4, QTableWidgetItem("50"))
-
-        self.table.setItem(2, 0, QTableWidgetItem("1-2"))
-        self.table.setItem(2, 1, QTableWidgetItem("2-2"))
-        
-        self.table.setItem(3, 0, QTableWidgetItem("1-3"))
-        self.table.setItem(3, 1, QTableWidgetItem("2-3"))
-
-        self.table.horizontalHeader().setStretchLastSection(True)
-        self.table.horizontalHeader().setSectionResizeMode(QHeaderView.ResizeMode.Stretch)
+    
+    def set_table(self, data : dict) -> None:
+        self.box.removeWidget(self.table)
+        self.table = Table(data, len(data.values()), 5)
+        self.box.addWidget(self.table)
         pass
+    
+    def _on_order_clicked(self) -> None:
+        data : dict = self.table.data
+        data["Nome"].append("Teste 3")
+        self.set_table(data)
+        pass
+
+class Table(QTableWidget):
+    
+    def __init__(self, data : dict, *args) -> None:
+        QTableWidget.__init__(self, *args)
+
+        self.data = data
+        self.set_data()
+
+        self.resizeColumnsToContents()
+        self.resizeRowsToContents()
+        pass
+    
+    def set_data(self) -> None:
+        self.clearContents()
+        headers : list = []
+        for column, key in enumerate(self.data.keys()):
+            headers.append(key)
+            for row, item in enumerate(self.data[key]):
+                new_item = QTableWidgetItem(item)
+                self.setItem(row, column, new_item)
+        self.setHorizontalHeaderLabels(headers)
+        pass
+    
