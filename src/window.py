@@ -9,12 +9,12 @@ class MainWindow(QWidget):
         super().__init__()
         self.setWindowTitle("Carga aerea")
         self.setGeometry(0, 0, 480, 480)
-        self.box = QGridLayout(self)
+        self.box : QGridLayout = QGridLayout(self)
         
-        self.table = QTableWidget(self)
+        self.table : QTableWidget = QTableWidget(self)
         self.set_table(data)
 
-        self.order = QPushButton("Ordenar", self)
+        self.order : QPushButton = QPushButton("Ordenar", self)
         self.order.clicked.connect(self._on_order_clicked)
         
         self.box.addWidget(self.table)
@@ -39,7 +39,7 @@ class Table(QTableWidget):
     def __init__(self, data : dict, *args) -> None:
         QTableWidget.__init__(self, *args)
 
-        self.data = data
+        self.data : dict = data
         self.set_data()
 
         self.resizeColumnsToContents()
@@ -52,7 +52,7 @@ class Table(QTableWidget):
         for column, key in enumerate(self.data.keys()):
             headers.append(key)
             for row, item in enumerate(self.data[key]):
-                new_item = QTableWidgetItem(item)
+                new_item : QTableWidgetItem = QTableWidgetItem(item)
                 self.setItem(row, column, new_item)
         self.setHorizontalHeaderLabels(headers)
         pass
