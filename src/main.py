@@ -3,16 +3,17 @@ Codigo principal do projeto onde o programa será executado
 """
 from PyQt5.QtWidgets import QApplication
 from window import MainWindow
+from knapsack import Object
 
-data = {
-    "Nome" : ["Teste 1", "Teste 2"],
-    "Valor" : ["50", "25"],
-    "Peso" : ["10", "5"],
-    "Prioridade" : ["1", "0"],
-    "Capacidade" : ["25", "40"],
-}
+objects = [
+    Object("Objeto 1", 100, 3, 3),
+    Object("Objeto 2", 250, 2, 1),
+    Object("Objeto 3", 50, 5, 1),
+    Object("Objeto 4", 150, 3, 6),
+    Object("Objeto 5", 350, 5, 2),
+]
 
 #Execução
 app = QApplication([])
-window = MainWindow(data)
+window = MainWindow(objects)
 app.exec_()
