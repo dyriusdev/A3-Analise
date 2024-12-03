@@ -26,7 +26,7 @@ class MainWindow(QWidget):
 
         self.max_weight_label : QLabel = QLabel(self)
         self.max_weight_label.setAlignment(Qt.AlignmentFlag.AlignCenter)
-        self.max_weight_label.setText("Capacidade de peso máxima da mochila : ?")
+        self.max_weight_label.setText("Capacidade máxima da mochila : ?")
 
         self.size_label : QLabel = QLabel(self)
         self.size_label.setAlignment(Qt.AlignmentFlag.AlignCenter)
@@ -56,7 +56,7 @@ class MainWindow(QWidget):
             selected_items = sorted(selected_items, key=lambda obj : obj.priority, reverse=True)
             
             self.set_table(selected_items)
-            self.max_weight_label.setText(f"Capacidade de peso máxima da mochila : {current_weight}/{maximum_value}")
+            self.max_weight_label.setText(f"Capacidade máxima da mochila : {current_weight}/{maximum_value}")
             self.size_label.setText(f"Tamanho da mochila : {space}")
         else:
             self.set_table(self.objects)
