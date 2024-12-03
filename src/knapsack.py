@@ -35,23 +35,22 @@ class Knapsack:
             return dont_take_value, dont_take_objects
         return dynamic_programming(0, space)
     
-    def calculate_weight(self, objects : list[Object], capacity : int) -> tuple[Object, list[Object]]:
+    def calculate_weight(self, objects : list[Object], capacity : int) -> tuple[int, list[Object]]:
         n = len(objects)
         pd = [[0 for _ in range(capacity + 1)] for _ in range(n + 1)]
 
         for i in range(1, n + 1):
             for c in range(1, capacity + 1):
                 if objects[i - 1].weight <= c:
-                    pd[i][c] = max(pd[i - 1][c], pd[i - 1][c - objects[i - c].weight + objects[i - 1].value])
+                    pd[i][c] = max(pd[i - 1][c],  pd[i - 1][c - objects[i - 1].weight] + objects[i - 1].value)
                 else:
                     pd[i][c] = pd[i - 1][c]
                 
-                c = capacity
-                selected_items : list[Object] = []
-                for i in range(n, 0, -1):
-                    if pd[i][c] != pd[i - 1][c]:
-                        selected_items.append(objects[i - 1][c])
-                        c -= objects[i - 1].weight
-                
-                return pd[n][capacity], selected_items
-        pass
+        c = capacity
+        selected_items : list[Object] = []
+        for i in range(n, 0, -1):
+            if pd[i][c] != pd[i - 1][c]:
+                selected_items.append(objects[i - 1])
+                c -= objects[i - 1].weight
+        
+        return pd[n][capacity], selected_items

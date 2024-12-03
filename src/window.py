@@ -51,9 +51,12 @@ class MainWindow(QWidget):
         if space.isnumeric() == True:
             size = len(self.objects)
             maximum_value, choosen_objects = self.sack.sack(size, self.objects, int(space))
-            self.set_table(choosen_objects)
-
-            self.max_weight_label.setText(f"Capacidade de peso máxima da mochila : {maximum_value}")
+            current_weight, selected_items = self.sack.calculate_weight(self.objects, int(space))
+            
+            selected_items = sorted(selected_items, key=lambda obj : obj.priority, reverse=True)
+            
+            self.set_table(selected_items)
+            self.max_weight_label.setText(f"Capacidade de peso máxima da mochila : {current_weight}/{maximum_value}")
             self.size_label.setText(f"Tamanho da mochila : {space}")
         else:
             self.set_table(self.objects)
