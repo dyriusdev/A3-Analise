@@ -1,6 +1,7 @@
+from PyQt5.QtGui import *
 from PyQt5.QtCore import *
 from PyQt5.QtWidgets import *
-from PyQt5.QtWidgets import QWidget
+
 from knapsack import *
 
 class MainWindow(QWidget):
@@ -19,11 +20,21 @@ class MainWindow(QWidget):
         self.choose : QPushButton = QPushButton("Escolher melhores itens", self)
         self.choose.clicked.connect(self._on_choose_clicked)
         
+        self.space_sack_input : QLineEdit = QLineEdit(self)
+        self.space_sack_input.setPlaceholderText("Inserir tamanho da mochila")
+        self.space_sack_input.setValidator(QIntValidator(1, 999, self))
+
         self.max_weight_label : QLabel = QLabel(self)
         self.max_weight_label.setAlignment(Qt.AlignmentFlag.AlignCenter)
-        self.max_weight_label.setText("Aperte 'Escolher melhores itens'")
+        self.max_weight_label.setText("Capacidade de peso máxima da mochila : ?")
+
+        self.size_label : QLabel = QLabel(self)
+        self.size_label.setAlignment(Qt.AlignmentFlag.AlignCenter)
+        self.size_label.setText("Tamanho da mochila : ?")
 
         self.box.addWidget(self.choose)
+        self.box.addWidget(self.space_sack_input)
+        self.box.addWidget(self.size_label)
         self.box.addWidget(self.max_weight_label)
         self.box.addWidget(self.table)
         self.show()
@@ -36,17 +47,19 @@ class MainWindow(QWidget):
         pass
     
     def _on_choose_clicked(self) -> None:
-        space = 3
-        size = len(self.objects)
-        maximum_value, choosen_objects = self.sack.sack(size, self.objects, space)
-        self.max_weight_label.setText(f"Valor máximo que pode ser obtido na mochila é : {maximum_value}")
-        self.set_table(choosen_objects)
+        space = self.space_sack_input.text()
+        if space.isnumeric() == True:
+            size = len(self.objects)
+            maximum_value, choosen_objects = self.sack.sack(size, self.objects, int(space))
+            self.set_table(choosen_objects)
 
-        a, b = self.sack.calculate_weight(choosen_objects, space)
-        print(a)
-        print()
-        for i in b:
-            print(i)
+            self.max_weight_label.setText(f"Capacidade de peso máxima da mochila : {maximum_value}")
+            self.size_label.setText(f"Tamanho da mochila : {space}")
+        else:
+            self.set_table(self.objects)
+            self.max_weight_label.setText("Capacidade máxima da mochila : ?")
+            self.size_label.setText("Tamanho da mochila : ?")
+        self.space_sack_input.clear()
         pass
 
 class Table(QTableWidget):
